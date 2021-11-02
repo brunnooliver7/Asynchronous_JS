@@ -1,3 +1,9 @@
+// success
+// Defeat
+// error
+// Error caught
+// Success: test
+
 function job(state) {
   return new Promise(function (resolve, reject) {
     if (state) {
@@ -14,7 +20,6 @@ promise
 
 .then(function (data) {
   console.log(data);
-
   return job(true);
 })
 
@@ -32,25 +37,21 @@ promise
 
 .catch(function (error) {
   console.log(error);
-
   return job(false);
 })
 
 .then(function (data) {
   console.log(data);
-
   return job(true);
 })
 
 .catch(function (error) {
   console.log(error);
-
   return 'Error caught';
 })
 
 .then(function (data) {
   console.log(data);
-
   return new Error('test');
 })
 

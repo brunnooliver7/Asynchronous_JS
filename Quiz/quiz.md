@@ -48,7 +48,7 @@ What is the output of the code below?
 A\) error, success, Error caught </br>
 B\) success, success </br>
 C\) success, error, success, error </br>
-D\) error, error, Error caught </br>
+D\) success, error, Error caught </br>
 E\) error, Error caught, success </br>
 F\) error, Error caught, success, error </br>
 G\) success, error, error </br>
@@ -69,28 +69,25 @@ let promise = job(true);
 
 promise
 
-  .then(function (data) {
-    console.log(data);
+.then(function (data) {
+  console.log(data);
+  return job(false);
+})
 
-    return job(false);
-  })
+.catch(function (error) {
+  console.log(error);
+  return 'Error caught';
+})
 
-  .catch(function (error) {
-    console.log(error);
+.then(function (data) {
+  console.log(data);
+  return job(true);
+})
 
-    return 'Error caught';
-  })
-
-  .then(function (data) {
-    console.log(data);
-
-    return job(true);
-  })
-
-  .catch(function (error) {
-    console.log(error);
-  });
-  ```
+.catch(function (error) {
+  console.log(error);
+});
+```
 
 ## Question 3
 
@@ -118,53 +115,48 @@ let promise = job(true);
 
 promise
 
-  .then(function (data) {
-    console.log(data);
+.then(function (data) {
+  console.log(data);
+  return job(true);
+})
 
-    return job(true);
-  })
+.then(function (data) {
+  if (data !== 'victory') {
+    throw 'Defeat';
+  }
 
-  .then(function (data) {
-    if (data !== 'victory') {
-      throw 'Defeat';
-    }
+  return job(true);
+})
 
-    return job(true);
-  })
+.then(function (data) {
+  console.log(data);
+})
 
-  .then(function (data) {
-    console.log(data);
-  })
+.catch(function (error) {
+  console.log(error);
+  return job(false);
+})
 
-  .catch(function (error) {
-    console.log(error);
+.then(function (data) {
+  console.log(data);
+  return job(true);
+})
 
-    return job(false);
-  })
+.catch(function (error) {
+  console.log(error);
+  return 'Error caught';
+})
 
-  .then(function (data) {
-    console.log(data);
+.then(function (data) {
+  console.log(data);
+  return new Error('test');
+})
 
-    return job(true);
-  })
+.then(function (data) {
+  console.log('Success:', data.message);
+})
 
-  .catch(function (error) {
-    console.log(error);
-
-    return 'Error caught';
-  })
-
-  .then(function (data) {
-    console.log(data);
-
-    return new Error('test');
-  })
-
-  .then(function (data) {
-    console.log('Success:', data.message);
-  })
-
-  .catch(function (data) {
-    console.log('Error:', data.message);
-  });
+.catch(function (data) {
+  console.log('Error:', data.message);
+});
 ```
